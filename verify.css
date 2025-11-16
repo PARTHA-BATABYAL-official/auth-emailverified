@@ -1,0 +1,146 @@
+/* Reset & box-sizing */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root{
+  --bg: #f5f8ff;
+  --card: #ffffff;
+  --accent: #07db6a;
+  --error: #ef4444;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --radius: 16px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Layout */
+html,body{ height:100%; margin:0; background:var(--bg); color:var(--text); }
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(12px,3vw,32px);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+}
+
+/* Container constraints */
+.container{ width: min(92vw, 460px); }
+
+/* Card */
+.card{
+  background:var(--card);
+  padding: clamp(20px, 4.5vw, 36px);
+  border-radius: clamp(12px, 2.5vw, 20px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  text-align:center;
+  animation: floatIn 0.55s ease-out;
+  display:flex;
+  flex-direction:column;
+  gap: clamp(10px, 2vw, 18px);
+  align-items:center;
+}
+
+/* Title & text */
+.title{ font-size: clamp(18px,2.6vw,24px); font-weight:600; margin:0; color:var(--text); }
+.subtitle{
+  font-size: clamp(13px,1.9vw,15px);
+  color:var(--muted);
+  margin:0;
+  line-height:1.45;
+  max-width:100%;
+  word-break:break-word;
+}
+
+/* NOTE: match JS which uses id="welcomeName" */
+#welcomeName{
+  display:block;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:6px;
+  font-size: clamp(14px,2vw,16px);
+}
+
+/* hide empty welcome to avoid vertical gap */
+#welcomeName:empty{ display:none; }
+
+/* Button (use button element or anchor with role) */
+.btn{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  padding: clamp(10px,2vw,12px) clamp(14px,4vw,20px);
+  border-radius:10px;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 6px 18px rgba(43,138,239,0.18);
+  margin-top:6px;
+  min-width:120px;
+  text-align:center;
+  outline: none;
+  border: none; /* if using <button> */
+  cursor: pointer;
+}
+
+/* Focus style for keyboard users */
+.btn:focus{
+  box-shadow: 0 0 0 4px rgba(7,219,106,0.15);
+  outline: 2px solid rgba(7,219,106,0.22);
+}
+
+/* Checkmark (SVG) */
+.checkmark{
+  width: clamp(56px,13vw,92px);
+  height:auto;
+  stroke-width:4;
+  stroke:var(--accent);
+  display:block;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  margin:0 auto;
+  animation: scaleIn 0.4s ease-out;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none; /* decorative */
+}
+
+/* Success stroke animations */
+.checkmark-circle{
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: stroke 0.6s ease forwards;
+  stroke-width:4;
+  stroke:var(--accent);
+  fill:none;
+}
+.checkmark-check{
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.45s ease 0.25s forwards;
+  stroke-width:4;
+  stroke:var(--accent);
+  fill:none;
+}
+
+/* Error icon overrides */
+.error-icon .checkmark-circle,
+.error-icon .checkmark-check,
+.error-icon { stroke: var(--error); }
+
+/* Animations */
+@keyframes floatIn{ from{ transform: translateY(12px); opacity:0 } to{ transform: translateY(0); opacity:1 } }
+@keyframes scaleIn{ 0%{ transform:scale(0.8); opacity:0 } 100%{ transform:scale(1); opacity:1 } }
+@keyframes stroke{ to{ stroke-dashoffset: 0 } }
+
+/* Very small screens */
+@media (max-width:340px){
+  .card{ padding:16px; gap:10px; }
+  .title{ font-size:18px; }
+  .subtitle{ font-size:13px; }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce){
+  .card, .checkmark, .checkmark-circle, .checkmark-check{ animation: none !important; transition: none !important; }
+}

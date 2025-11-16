@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Verified</title>
+  <link rel="stylesheet" href="css/verify.css" />
+
+  <link rel="icon" type="image/x-icon" href="/android-chrome-512x512.png">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="container">
+    <div id="success" class="card success" role="alert" aria-live="polite">
+      <!-- Optional placeholder (JS will create if missing) -->
+      <div id="verifyIcon" aria-hidden="true"></div>
+
+      <h1 class="title">Email Verified</h1>
+
+      <p class="subtitle">
+        <strong id="welcomeName" class="welcome"></strong>
+        Your email has been successfully verified. You may now log in.
+      </p>
+    </div>
+  </main>
+
+  <noscript>
+    <p class="subtitle">JavaScript is required to display verification status. Please enable JavaScript or contact support.</p>
+  </noscript>
+
+  <script src="js/verify.js"></script>
+</body>
+</html>
